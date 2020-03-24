@@ -8,6 +8,7 @@ public class User {
     private String password;
     private String salt;
     private String headUrl;
+    private String phone;
     public User(){
     }
 
@@ -53,5 +54,13 @@ public class User {
 
     public void setHeadUrl(String headUrl) {
         this.headUrl = headUrl;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

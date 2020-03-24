@@ -1,13 +1,11 @@
 package com.nevada.controller;
 
 
+import com.nevada.dto.UserDto;
 import com.nevada.entity.User;
 import com.nevada.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class UserServiceController {
@@ -16,11 +14,13 @@ public class UserServiceController {
     private UserService userService;
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public User register(@RequestParam String name,
-                         @RequestParam String password){
+    public void register(@RequestBody UserDto userDto){
 
-        User user=userService.register(name,password);
-        return user;
+       userService.register(userDto);
+    }
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public boolean login(String name, String password){
+        return userService.login( name, password);
     }
 
 }

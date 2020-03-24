@@ -2,11 +2,16 @@ package com.nevada.service;
 
 
 
+import com.nevada.dto.UserDto;
 import com.nevada.entity.User;
+
+import java.util.List;
 
 
 public interface UserService {
 
-    User register(String  name ,String password);
+    void register(UserDto userDto);
+
+    boolean login(String name, String password);
 
 }
