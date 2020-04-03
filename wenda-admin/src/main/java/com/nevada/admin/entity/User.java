@@ -1,13 +1,20 @@
 package com.nevada.admin.entity;
 
+import io.swagger.annotations.ApiModelProperty;
 
-
-public class User {
+public class User  {
     private int id;
+
     private String name;
+
     private String password;
+
+    @ApiModelProperty(value = "头像")
     private String headUrl;
+
+    @ApiModelProperty(value="手机号")
     private String phone;
+
     public User(){
     }
 

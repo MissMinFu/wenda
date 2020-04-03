@@ -1,11 +1,26 @@
 package com.nevada.admin.config;
 
+
+
+import com.nevada.admin.bo.AdminUserDetails;
+import com.nevada.admin.dao.UserDao;
+
+import com.nevada.admin.dto.UserDto;
+import com.nevada.admin.entity.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.util.List;
 
 /**
  * @program:wenda
@@ -13,26 +28,63 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  * @author: nevada
  * @create: 2020-03-26 11:12
  **/
+
+@Configuration
+@EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    UserDao userDao;
     @Override
     public void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .authorizeRequests()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin().and()
-                .httpBasic();
+                .anyRequest().permitAll()
+//                .and()
+//                .httpBasic()
+//                .realmName("/")
+//                .and()//配置登录页面
+//                .formLogin()
+//                .loginPage("/login")
+//                .failureUrl("/login?error=true")
+//                .and()//配置退出路径
+//                .logout()
+//                .logoutSuccessUrl("/")
+//                .and()//记住密码功能
+//                .rememberMe()
+//                .tokenValiditySeconds(60*60*24)
+//                .key("rememberMeKey")
+                 .and()//关闭跨域伪造
+                 .csrf()
+                 .disable()
+                .headers()//去除X-Frame-Options
+                .frameOptions()
+                .disable();
     }
 
 
     public void configure(AuthenticationManagerBuilder auth) throws  Exception{
-        auth.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(userDetailsService());
     }
 
     @Bean
+    public UserDetailsService userDetailsService() {
+        //获取登录用户信息
+        return new UserDetailsService() {
+            @Override
+            public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+                User umsAdminList = userDao.selectUser(username);
+                if (umsAdminList != null) {
+                    return new AdminUserDetails(umsAdminList);
+                }
+                throw new UsernameNotFoundException("用户名或密码错误");
+            }
+        };
+    }
+    @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    }
+}
+
 
 }

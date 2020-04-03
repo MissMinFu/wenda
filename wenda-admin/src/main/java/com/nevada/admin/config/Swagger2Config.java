@@ -19,7 +19,7 @@ public class Swagger2Config {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.nevada.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.nevada.admin.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }

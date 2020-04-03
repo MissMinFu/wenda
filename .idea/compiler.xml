@@ -8,7 +8,6 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="wenda-admin" />
-        <module name="wenda-security" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
