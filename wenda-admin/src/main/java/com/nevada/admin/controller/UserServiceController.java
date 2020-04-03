@@ -5,6 +5,7 @@ import com.nevada.admin.common.CommonResult;
 import com.nevada.admin.dto.UserDto;
 import com.nevada.admin.entity.User;
 import com.nevada.admin.service.UserService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,6 +15,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
+@Api(tags = "用户管理")
+@RequestMapping(value="/user")
 public class UserServiceController {
 
     @Autowired

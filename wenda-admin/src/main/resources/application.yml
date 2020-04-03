@@ -35,8 +35,8 @@ secure:
       - /webjars/springfox-swagger-ui/**
       - /actuator/**
       - /druid/**
-      - /login
-      - /register
+      - /user/login
+      - /user/register
 
 logging:
   level:

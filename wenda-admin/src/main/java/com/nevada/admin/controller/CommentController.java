@@ -4,6 +4,7 @@ import com.nevada.admin.common.CommonResult;
 import com.nevada.admin.entity.Comment;
 import com.nevada.admin.service.CommentService;
 import com.nevada.admin.service.QuestionService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.*;
  * @create: 2020-04-03 14:15
  **/
 @RestController
+@Api(tags = "评论")
+@RequestMapping(value = "/comment")
 public class CommentController {
     private static final Logger LOGGER= LoggerFactory.getLogger(CommentController.class);
     @Autowired

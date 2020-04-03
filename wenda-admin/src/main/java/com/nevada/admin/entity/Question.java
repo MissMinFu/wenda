@@ -1,5 +1,7 @@
 package com.nevada.admin.entity;
 
+import java.util.Date;
+
 /**
  * @program:wenda
  * @description: 问题实体
@@ -11,7 +13,7 @@ public class Question {
     private String title;
     private String context;
     private int userId;
-    private String createdDate;
+    private Date createdDate;
     private int commentCount;
     public int getId() {
         return id;
@@ -45,11 +47,11 @@ public class Question {
         this.userId = userId;
     }
 
-    public String getCreatedDate() {
+    public Date getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(String createdDate) {
+    public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
     }
 

@@ -15,7 +15,7 @@ public interface QuestionDao {
     String TABLE_NAME="question";
     String INSERT_FIELD=" title, context, created_date, user_id, comment_count ";
     String SELECT_FIELDS = " id, " + INSERT_FIELD;
-    @Insert({"insert into",TABLE_NAME,"(",INSERT_FIELD,") values (#{title},#{context},#{createdDate},#{userId},#{status},#{commentCount}"})
+    @Insert({"insert into",TABLE_NAME,"(",INSERT_FIELD,") values (#{title},#{context},#{createdDate},#{userId},#{commentCount})"})
     int addQuestion(Question question);
 
     @Select({"select ", SELECT_FIELDS, " from", TABLE_NAME, " where id=#{id}"})

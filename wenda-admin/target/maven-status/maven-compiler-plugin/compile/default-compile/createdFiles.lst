@@ -13,6 +13,7 @@ com\nevada\admin\controller\UserServiceController.class
 com\nevada\admin\util\JwtTokenUtil.class
 com\nevada\admin\service\impl\QuestionServiceImpl.class
 com\nevada\admin\controller\CommentController.class
+com\nevada\admin\config\IgnoreUrlsConfig.class
 com\nevada\admin\dao\UserDao.class
 com\nevada\admin\validator\FlagValidator.class
 com\nevada\admin\validator\FlagValidatorClass.class

@@ -10,6 +10,7 @@ F:\wenda1\wenda\wenda-admin\src\main\java\com\nevada\admin\common\IErrorCode.jav
 F:\wenda1\wenda\wenda-admin\src\main\java\com\nevada\admin\entity\User.java
 F:\wenda1\wenda\wenda-admin\src\main\java\com\nevada\admin\dao\CommentDao.java
 F:\wenda1\wenda\wenda-admin\src\main\java\com\nevada\admin\service\CommentService.java
+F:\wenda1\wenda\wenda-admin\src\main\java\com\nevada\admin\config\IgnoreUrlsConfig.java
 F:\wenda1\wenda\wenda-admin\src\main\java\com\nevada\admin\config\Swagger2Config.java
 F:\wenda1\wenda\wenda-admin\src\main\java\com\nevada\admin\WendaApplication.java
 F:\wenda1\wenda\wenda-admin\src\main\java\com\nevada\admin\validator\FlagValidatorClass.java

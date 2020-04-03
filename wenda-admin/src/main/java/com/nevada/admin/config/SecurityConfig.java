@@ -16,6 +16,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -42,17 +43,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     UserDao userDao;
     @Override
     public void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity
-                .authorizeRequests()
-                .anyRequest().permitAll()
-//                .and()
-//                .httpBasic()
-//                .realmName("/")
-//                .and()//配置登录页面
-//                .formLogin()
-//                .loginPage("/login")
-//                .failureUrl("/login?error=true")
-//                .and()//配置退出路径
+        ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry registry = httpSecurity
+                .authorizeRequests();
+        for (String url : ignoreUrlsConfig().getUrls()) {
+            registry.antMatchers(url).permitAll();
+        }
+        registry
+                .anyRequest()
+                .authenticated()
 //                .logout()
 //                .logoutSuccessUrl("/")
 //                .and()//记住密码功能
@@ -78,6 +76,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         return username -> userService.loadUserByUsername(username);
 
+    }
+
+    @Bean
+    public IgnoreUrlsConfig ignoreUrlsConfig() {
+        return new IgnoreUrlsConfig();
     }
     @Bean
     public PasswordEncoder passwordEncoder() {
