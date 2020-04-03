@@ -6,7 +6,8 @@ public class Comment {
     private String context;
     private int userId;
     private int entityId;
-    private int create_date;
+    private int entityType;
+    private int createdDate;
     private int status;
     public int getId() {
         return id;
@@ -23,25 +24,26 @@ public class Comment {
     public int getUserId() {
         return userId;
     }
-
     public void setUserId(int userId) {
         this.userId = userId;
     }
-
     public int getEntityId() {
         return entityId;
     }
-
     public void setEntityId(int entityId) {
         this.entityId = entityId;
     }
-
-    public int getCreate_date() {
-        return create_date;
+    public int getCreatedDate() {
+        return createdDate;
     }
-
-    public void setCreate_date(int create_date) {
-        this.create_date = create_date;
+    public void setCreatedDate(int createdDate) {
+        this.createdDate = createdDate;
+    }
+    public int getEntityType() {
+        return entityType;
+    }
+    public void setEntityType(int entityType) {
+        this.entityType = entityType;
     }
 
     public int getStatus() {

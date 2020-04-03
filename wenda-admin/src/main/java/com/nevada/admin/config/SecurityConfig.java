@@ -7,6 +7,8 @@ import com.nevada.admin.dao.UserDao;
 
 import com.nevada.admin.dto.UserDto;
 import com.nevada.admin.entity.User;
+import com.nevada.admin.service.UserService;
+import com.nevada.admin.util.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,7 +22,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.util.List;
+
 
 /**
  * @program:wenda
@@ -32,6 +34,9 @@ import java.util.List;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private UserService userService;
 
     @Autowired
     UserDao userDao;
@@ -70,21 +75,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public UserDetailsService userDetailsService() {
         //获取登录用户信息
-        return new UserDetailsService() {
-            @Override
-            public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-                User umsAdminList = userDao.selectUser(username);
-                if (umsAdminList != null) {
-                    return new AdminUserDetails(umsAdminList);
-                }
-                throw new UsernameNotFoundException("用户名或密码错误");
-            }
-        };
+
+        return username -> userService.loadUserByUsername(username);
+
     }
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
 }
-
+    @Bean
+    public JwtTokenUtil jwtTokenUtil() {
+        return new JwtTokenUtil();
+    }
 
 }

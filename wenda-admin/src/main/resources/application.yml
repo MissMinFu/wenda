@@ -15,6 +15,12 @@ spring:
     cache: false #开发时关闭缓存,不然没法看到实时页面
 
 
+jwt:
+  tokenHeader: Authorization #JWT存储的请求头
+  secret: wenda-admin-secret #JWT加解密使用的密钥
+  expiration: 604800 #JWT的超期限时间(60*60*24)
+  tokenHead: Lisa  #JWT负载中拿到开头
+
 secure:
   ignored:
     urls: #安全路径白名单

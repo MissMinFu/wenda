@@ -9,7 +9,7 @@ package com.nevada.admin.entity;
 public class Question {
     private int id;
     private String title;
-    private String text;
+    private String context;
     private int userId;
     private String createdDate;
     private int commentCount;
@@ -29,12 +29,12 @@ public class Question {
         this.title = title;
     }
 
-    public String getText() {
-        return text;
+    public String getContext() {
+        return context;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setContext(String context) {
+        this.context = context;
     }
 
     public int getUserId() {
