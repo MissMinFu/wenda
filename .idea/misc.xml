@@ -11,7 +11,6 @@
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/wenda-common/pom.xml" />
-        <option value="$PROJECT_DIR$/wenda-security/pom.xml" />
       </set>
     </option>
   </component>
