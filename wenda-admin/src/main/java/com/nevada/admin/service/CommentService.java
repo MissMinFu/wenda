@@ -19,7 +19,7 @@ public interface CommentService {
 
     int addComment(Comment comment);
 
-    List<Comment> getCommentsByEntity(int entityId, int entityType);
+    Comment getCommentsByEntity(int entityId);
 
     int getCommentCount(int entityId,int entityType);
 

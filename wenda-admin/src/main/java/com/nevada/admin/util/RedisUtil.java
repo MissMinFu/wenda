@@ -28,5 +28,10 @@ public class RedisUtil {
     }
 
 
+    public static String getEventQueueKey(){
+        return "EVENT_QUEUE";
+    }
+
+
 
 }

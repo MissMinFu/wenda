@@ -52,7 +52,6 @@ public class Swagger2Config {
         List<SecurityContext> result = new ArrayList<>();
         result.add(getContextByPath("/question/.*"));
         result.add(getContextByPath("/comment/.*"));
-        result.add(getContextByPath("/operationLike/.*"));
         return result;
     }
     private SecurityContext getContextByPath(String pathRegex){

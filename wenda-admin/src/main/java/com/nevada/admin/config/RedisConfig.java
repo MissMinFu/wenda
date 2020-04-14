@@ -18,6 +18,12 @@ import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
  **/
 @Configuration
 public class RedisConfig {
+
+    /**
+     * 序列化传输
+     * @param connectionFactory
+     * @return
+     */
     @Bean
     @ConditionalOnMissingBean(name="RedisTemplate")
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory connectionFactory) {

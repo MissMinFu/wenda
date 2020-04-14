@@ -11,13 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 
 @RestController
 @Api(tags = "用户管理")
 @RequestMapping(value="/user")
-public class UserServiceController {
+public class UserController {
 
     @Autowired
     private UserService userService;
@@ -43,8 +44,8 @@ public class UserServiceController {
     @ApiOperation(value = "登陆")
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult login(@RequestParam String name,@RequestParam String password){
-       String  token= userService.login(name,password);
+    public CommonResult login(@RequestParam HttpServletResponse response, @RequestParam String name, @RequestParam String password){
+       String  token= userService.login(response,name,password);
         if ( token== null) {
             return CommonResult.validateFailed("用户名或密码错误");
         }
@@ -52,6 +53,16 @@ public class UserServiceController {
         tokenMap.put("token", token);
         tokenMap.put("tokenHead", tokenHead);
         return CommonResult.success(tokenMap);
+    }
+
+    @ApiOperation(value = "修改密码")
+    @RequestMapping(value = "/updatepassword",method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult updatepassword(@RequestParam String telephone,
+                                       @RequestParam String password,
+                                       @RequestParam String authCode){
+
+        return userService.updatePassword(telephone,password,authCode);
     }
 
 
